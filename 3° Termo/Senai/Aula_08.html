@@ -1,0 +1,44 @@
+<script>
+    var pokemon = document.getElementById('pokemon');
+    var botao = document.getElementById('btn');
+
+
+    var http = new XMLHttpRequest();
+    botao.addEventListener('click', function () {
+        console.log(pokemon.value);
+        var url = "https://pokeapi.co/api/v2/pokemon/" + pokemon.value;
+        http.open('get', url, true);
+        http.send();
+        http.onreadystatechange = function () {
+            var resposta = JSON.parse(http.response);
+
+            resposta.abilities.array.forEach(element => {
+                console.log(element.name);
+                console.log(element.slot);
+            });
+
+            console.log(resposta.base_experience);
+            console.log(resposta.game_indices);
+            console.log(resposta.height);
+            console.log(resposta.id);
+        }
+    })
+</script>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir Api JS</title>
+</head>
+
+<body>
+    <label for="">CEP do seu barraco</label>
+    <input type="text" id="pokemon">
+    <button id="btn">Click aqui</button>
+</body>
+</html>

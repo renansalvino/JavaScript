@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="">
+    <title>Cronometro</title>
+</head>
+
+<body>
+
+    <div class="max-width">
+        <button onclick="start();" class="bg-green">Iniciar</button>
+        <button onclick="pause();" class="bg-yellow">Pausar</button>
+        <button onclick="stop();" class="bg-red">resetar</button>
+        <h1 id="contador">00:00:00</h1>
+    </div>
+<Script>
+var hh = 0;
+        var mm = 0;
+        var ss = 0;
+
+        var tempo = 1000;
+        var cronometro;
+
+
+        function timer() {
+            ss++;
+
+            if (ss == 59) {
+                ss = 0;
+                mm++;
+
+                if (mm == 59) {
+                    mm = 0;
+                    hh++;
+                }
+            }
+
+            var formato = (hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss);
+
+            document.getElementById('contador').innerText = formato;
+
+            return format;
+        }
+
+        function start() {
+            cronometro = setInterval(() => { timer(); }, tempo);
+        }
+
+        function pause() {
+            clearInterval(cronometro);
+        }
+
+        function stop() {
+            clearInterval(cronometro);
+            h = 0;
+            mm = 0;
+            ss = 0;
+
+            document.getElementById('contador').innerText = '00:00:00';
+        }
+
+</Script>
+</body>
+
+</html>
